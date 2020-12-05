@@ -1,0 +1,30 @@
+User-agent: *
+
+Disallow: /admin/ - закрытие админки
+Disallow: /*.pdf
+Disallow: /*.doc
+Disallow: /*?* - закрытие гет запроса
+Sitemap: sitehost/sitemap.xml
+
+
+
+User-agent: Googlebot  ( не уверен в названиях бттов )
+
+Disallow: /admin/ - закрытие админки
+Disallow: /*.pdf
+Disallow: /*.doc
+Disallow: /*?* - закрытие гет запроса
+Sitemap: не надо, сам увидит из обшщего бсер агента
+
+
+
+
+User-agent: Yandex
+
+Disallow: /admin/ - закрытие админки
+Disallow: /*.pdf
+Disallow: /*.doc
+Disallow: /*?* - закрытие гет запроса
+Host: https://site.ru ( он же sitehost)
+Sitemap: sitehost/sitemap.xml
+
