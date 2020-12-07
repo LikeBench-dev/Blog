@@ -24,14 +24,10 @@ export default {
       }
     }
   },
-  mounted() {
-    console.log(this.$store.getters.getPostsLoaded);
-  },
   methods: {
     onSubmit () {
       this.$store.dispatch('authUser', this.user)
       .then((res) => {
-        console.log(this.$store.getters.getPostsLoaded);
         this.$router.push('/admin')
       })
       .catch(e => {

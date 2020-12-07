@@ -12,7 +12,9 @@
 
       <!--        body-->
       <div class="post-body">
-        <p>{{ post.content }}</p>
+            <v-md-preview :text="post.content"></v-md-preview>
+
+<!--        <p>{{ post.content }}</p>-->
       </div>
 
 

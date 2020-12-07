@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export default {
   // Target (https://go.nuxtjs.dev/config-target)
-  target: 'static',
+  target: 'server',
 
 
   // Global page headers (https://go.nuxtjs.dev/config-head)
@@ -18,14 +18,22 @@ export default {
     ]
   },
 
+  //Animation
+  pageTransition: {
+    name: 'fade',
+    mode: 'out-in'
+  },
+
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
-    { src: '~/assets/scss/main.scss', lang: 'scss' }
+    { src: '~/assets/scss/main.scss', lang: 'scss' },
+    { src: '@kangc/v-md-editor/lib/style/base-editor.css', lang: 'css' }
   ],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
-    { src: '~plugins/app-components.js'}
+    { src: '~plugins/app-components.js'},
+    { src: '~plugins/markdown.js', mode: 'client' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)

@@ -5,10 +5,11 @@
         <AppInput v-model="post.title"> Title: </AppInput>
         <AppInput v-model="post.descr"> Description: </AppInput>
         <AppInput v-model="post.img"> Img: </AppInput>
-        <AppTextarea v-model="post.content"> Content: </AppTextarea>
+<!--        <AppTextarea v-model="post.content"> Content: </AppTextarea>-->
+        <AppMarkdown  v-model="post.content"> Content: </AppMarkdown>
 
 
-<!--        buttons-->
+        <!--        buttons-->
         <div class="controls">
           <div class="btn btnDanger" btnClass="btnDanger" @click="cancel"> Cancel
           </div>

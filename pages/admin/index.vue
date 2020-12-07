@@ -5,9 +5,11 @@
 <script>
 export default {
   layout: 'admin',
+  mounted() {
+    this.$store.dispatch('nuxtServerInit')
+  },
   computed: {
     postsLoaded () {
-      // console.log(this.$store.getters.getPostsLoaded);
       return this.$store.getters.getPostsLoaded
     }
   }

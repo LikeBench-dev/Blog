@@ -1,4 +1,5 @@
 import axios from 'axios'
+import Cookie from 'js-cookie'
 
 export const state = () => ({
   postsLoaded: [],
@@ -35,7 +36,6 @@ export const actions = {
           postsArray.push({...res.data[key], id: key})
         }
         // Res
-        console.log(postsArray.length);
         commit('setPosts', postsArray)
       })
       .catch(e => console.log(e))
@@ -47,11 +47,39 @@ export const actions = {
       password: authData.password,
       returnSecureToken: true
     })
-      .then((res) => { commit('setToken', res.data.idToken)})
+      .then((res) => {
+        let token = res.data.idToken
+        commit('setToken', token)
+
+        //to localStorage
+        localStorage.setItem('token', token)
+
+        // to Cookie
+        Cookie.set('jwt', token)
+      })
       .catch(e => console.log(e))
+  },
+  initAuth ({commit}, req) {
+    let token
+
+    if (req) {
+      // logic
+      if (!req.headers.cookie) return false
+      const jwtCookie = req.headers.cookie
+        .split(';')
+        .find(t => t.trim().startsWith('jwt='))
+      if (!jwtCookie) return false
+      token = jwtCookie.split('=')[1]
+    } else {
+      token = localStorage.getItem('token')
+      if (!token) return false
+    }
+    commit('setToken', token)
   },
   logoutUser ({commit}) {
     commit('destroyToken')
+    localStorage.removeItem('token')
+    Cookie.remove('jwt')
   },
   addPost ({commit}, post) {
     return axios.post('https://blog-nuxt-81b4d-default-rtdb.europe-west1.firebasedatabase.app/posts.json', post)
@@ -67,7 +95,7 @@ export const actions = {
       })
       .catch(e => console.log(e))
   },
-  addComment (comment) {
+  addComment ({commit}, comment) {
     return axios.post('https://blog-nuxt-81b4d-default-rtdb.europe-west1.firebasedatabase.app/comments.json', comment)
       .catch(e => console.log(e))
   }

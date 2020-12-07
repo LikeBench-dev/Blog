@@ -38,6 +38,7 @@ export default {
   },
   methods: {
     onSubmit () {
+      // console.log({...this.comment})
       this.$store.dispatch('addComment', {
         postId: this.postId,
         publish: false,
@@ -45,7 +46,7 @@ export default {
       })
       .then(() => {
         this.message = 'Submited!'
-
+        console.log({...this.comment})
         // Reset
         this.comment.name = ''
         this.comment.text = ''

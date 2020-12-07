@@ -27,7 +27,8 @@ export default {
   components: {
     Header
   },
-  middleware: ['auth'],
+  middleware: ['auth-check', 'auth'],
+  transitions: 'fade',
   methods: {
     logoutUser () {
       this.$store.dispatch('logoutUser')
